@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rock, Paper, Scissors!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+    <div id="playerDiv">
+        
+    </div>
+    <div class="computerDiv">
+
+    </div>
+</body>
+<script>
+    const ROCK = 1;
+    const PAPER = 2;
+    const SCISSORS = 3;
+    var player_win_counts = 0;
+    var computer_win_counts = 0;
+
+    function computerPlay()
+    {
+        var computerSelection = Math.floor(Math.random() * 3) + 1;
+        
+        return computerSelection;
+    }
+
+    function playerRound(playerSelection, computerSelection)
+    {
+        var result;
+        if(playerSelection == ROCK)
+        {
+            if(computerSelection == SCISSORS)
+            {
+                result = 'You win this round! Rock beat scissors!';
+                player_win_counts++;
+            }
+            else if(computerSelection == PAPER)
+            {
+                result = 'You lose this round! Paper beat rocks';
+                computer_win_counts++;
+            }
+            else
+            {
+                result = 'It\'s a draw for this round! '; 
+            }
+        }
+        else if (playerSelection == PAPER)
+        {
+            if(computerSelection == ROCK)
+            {
+                result = 'You win this round! Paper beat rock!';
+                player_win_counts++;
+            }
+            else if(computerSelection == SCISSORS)
+            {
+                result = 'You lose this round! Scissors beat paper!';
+                computer_win_counts++;
+            }
+            else
+            {
+                result = 'It\'s a draw for this round! '; 
+            }
+        }
+        else if (playerSelection == SCISSORS)
+        {
+            if(computerSelection == PAPER)
+            {
+                result = 'You win this round! Scissors beat paper!';
+                player_win_counts++;
+            }
+            else if(computerSelection == ROCK)
+            {
+                result = 'You lose this round! Rock beat scissors!';
+                computer_win_counts++;
+            }
+            else
+            {
+                result = 'It\'s a draw for this round! '; 
+            }
+        }
+
+        return result;
+    }
+
+    function game()
+    {
+        var playerSelection = 0;
+        var computerSelection = 0;
+        
+        do
+        {
+            computerSelection = computerPlay()
+            playerSelection = prompt("Please choose : 1 for Rock, 2 for Paper, or 3 for Scissors");
+            console.log(playerRound(playerSelection,computerSelection));
+            console.log("computer: " + computer_win_counts);
+            console.log("player: " + player_win_counts);
+
+        }while(computer_win_counts < 5 && player_win_counts < 5)
+
+        if(player_win_counts === 5)
+        {
+            console.log("Player(YOU) WINS this RPS game!");
+        }
+        else
+        {
+            console.log("Computer WINS this RPS game!");
+        }
+        
+    }
+
+    game();
+    
+</script>
+</html>
